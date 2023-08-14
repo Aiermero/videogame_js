@@ -1,0 +1,51 @@
+*{
+    padding: none;
+    margin: 0;
+}
+.inactive{
+    display: none;
+}
+body{
+    background-color: cornflowerblue;
+}
+header{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    height: 20vh;
+}
+.titulo{
+    color: white;
+    font-size: 5rem;
+}
+main{
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+.game{
+    background-color: rgb(29, 29, 128);
+    border-radius: 5px;
+    border: solid;
+    border-color: aliceblue;
+}
+.menssage{
+    position: absolute;
+    font-size: 4rem;
+    top: 60%;
+    font-weight: 600;
+    color: aliceblue;
+}
+.restart{
+    background-color: cornflowerblue;
+    position: absolute;
+    top: 70%;
+    height: 5vh;
+    width: 20vw;
+    border-radius: 20px;
+    border: none;
+    font-size: 2rem;
+    color: aliceblue;
+}
