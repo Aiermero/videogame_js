@@ -8,6 +8,7 @@ const liveSpan = document.querySelector('.lives')
 const timeSpan = document.querySelector('.time')
 const recordSpan = document.querySelector('.record')
 const resultP = document.querySelector('.result')
+const btnReset = document.querySelector('.reset')
 
 let canvasSize
 let elementSize
@@ -30,6 +31,7 @@ const giftPosition = {
 
 window.addEventListener('load', setCanvasSize)
 window.addEventListener('resize', setCanvasSize)
+btnReset.addEventListener('click', gameReset)
 
 function startGame(){
 
@@ -107,7 +109,6 @@ function movePlayer() {
     if(giftColision){
         console.log('subiste de nivel')
         levelUp()
-        startGame()
     }
     const enemyCollision = enemyPositions.find(enemy => {
         const enemyCollisionX = enemy.x.toFixed(3) == playerPosition.x.toFixed(3);
@@ -122,6 +123,7 @@ function movePlayer() {
 }
 function levelUp(){
     level++
+    
     startGame()
 }
 function levelFail(){
@@ -129,7 +131,6 @@ function levelFail(){
     if(lives <= 0){
         level = 0
         lives = 3
-        localStorage.setItem(1,timePlayer)
         timeStart = undefined
     }
     playerPosition.x = undefined
@@ -148,6 +149,7 @@ function showTime(){
 }
 function gameWin () {
     clearInterval(timeInterval)
+    console.log('entro clearInterval')
     const recordTime = localStorage.getItem('record_time')
     const playerTime = Date.now() - timeStart 
     if (recordTime) {
@@ -159,11 +161,19 @@ function gameWin () {
         } 
     }else{
         localStorage.setItem('record_time', playerTime)
-        resultP.textContent = 'Uhm.. TRATA DE SUPERAR EL RECORD LA PROXIMA!'
+        resultP.textContent = 'PRIMERA MARCA'
     }
 }
 function showRecord(){
     recordSpan.textContent = localStorage.getItem('record_time')
+}
+function gameReset(){
+    lives = 3
+    level = 0
+    timeStart = undefined
+    playerPosition.x = undefined
+    playerPosition.y = undefined
+    startGame()
 }
 btnDown.addEventListener('click',moveDown)
 btnLeft.addEventListener('click',moveLeft)
